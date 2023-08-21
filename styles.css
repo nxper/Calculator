@@ -156,7 +156,7 @@
  .close-button:hover {
   color: red;
  }
-
+ 
  .darkThemeButton:hover {
   font-weight: 600;
   color: black;
@@ -210,9 +210,9 @@
  .quizDisplay{
   pointer-events: none;
   opacity: 0;
-  border: 1px;
-  position: absolute;
-  right: 465px;
+  border: 1px solid black;
+  position: relative;
+  justify-content: center;
   background-color: white;
   border-radius: 1px;
   font-weight: 600;
@@ -241,7 +241,7 @@
   background-color: beige;
   color: blue;
  }
- .questionNumber > button{
+ #questionNumberinf{
   width: 50px;
   justify-content: space-between;
   cursor: pointer;
@@ -255,7 +255,7 @@
   pointer-events: none;
   opacity: 0;
  }
- .questionNumber > button.active{
+ #questionNumberinf.active{
   opacity: 1;
   pointer-events: all;
  }
@@ -315,15 +315,17 @@
   font-weight: 700;
   cursor: pointer;
   position: relative;
-  left: 800px;
+  left: 700px;
   top: 10px;
   color: #ff2600;
   background: none;
  }
+.quizDisplay
  #closebuttonQ.active{
   pointer-events: all;
   opacity: 1;
  }
+
  #quizDisplay.active{
   pointer-events: all;
   opacity: 1;

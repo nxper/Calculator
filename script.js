@@ -167,23 +167,7 @@ class config {
         }
     }
     quizButtonFunction(){
-        let questionPicker = Math.floor(Math.random * 10)
-        let randomNumber = "?"
-        let randomNumber2 = Math.floor(Math.random() * 15)
-        function quizButtonRNG(){
-            quizDisplay.innerText = randomNumber
-        }
-        function randomNumFunc(){
-            if (questionPicker < 2){
-                randomNumber = Math.floor(Math.random() * 15)
-            }else if(questionPicker >= 2){
-                randomNumber = Math.floor(Math.random() * 30)
-            }else if(questionPicker >= 5){
-                randomNumber = Math.floor(Math.random() * 60)
-            }else if(questionPicker >= 8){
-                randomNumber = Math.floor(Math.random() * 120)
-            }
-        }
+        
         function questionNumber(){
             document.getElementById('questionPrompt').innerText = 'How many questions would you like??'
             document.getElementById('questionPrompt').classList.add('active')
@@ -195,29 +179,25 @@ class config {
         }, 2500)
     }
     questionNumber()
-        const randomNumVar = randomNumFunc()
-         const quizButtonRNGVar = quizButtonRNG()
+        var randomNumVar = randomNumFunc()
+         var quizButtonRNGVar = quizButtonRNG()
          //Hace que el display rojo del quiz tome el valor de randomNumber
-    }
+         
+     }
     NOQCFunction(){
         questionNumberHiderFunc()
-        let questionsLeft = 0
-        let animation = 100
         function randomNumberAnimation(){
-            while(animation != 0){
-                setInterval(()=>{
-                    randomNumFunc(),
-                    quizButtonRNGVar()
-            }, 100)
+          
+            for(var animation = 200;animation == 0; animation-=1){
+                    randomNumFunc()
+                    quizButtonRNG()
+            }
+         }
+         randomNumberAnimation()
         }
-        }
-        if(NOQC === 3){
-            while(NOQC === 3 && questionsLeft === 1){
-            randomNumVar()
-            quizButtonRNGVar()
-        }}
-    }
-    CorrectOrFalse(){
+        
+    
+    CorrectOrFalse() {
         if(result === quizDisplay.innerText){
             document.getElementById('questionPrompt').classList.add('quizActive')
             document.getElementById('questionPrompt').innerText = 'Correct!!'
@@ -226,14 +206,28 @@ class config {
             document.getElementById('questionPrompt').innerText = 'incorrect :(((((('
         }
     }
-    difficultyCheckerFunction(){
-
-    }
 }
+let randomNumber = 0;
+function quizButtonRNG(){
+            quizDisplay.innerText = randomNumber
+        }
+ const CONFIGURATION = new config()
 
-const CONFIGURATION = new config()
-
-
+let questionPicker = Math.floor(Math.random * 10)
+        
+        
+        function randomNumFunc(){
+            if (questionPicker < 2){
+               return randomNumber = Math.floor(Math.random() * 15)
+            }else if(questionPicker >= 2){
+               return randomNumber = Math.floor(Math.random() * 30)
+            }else if(questionPicker >= 5){
+              return  randomNumber = Math.floor(Math.random() * 60)
+            }else if(questionPicker >= 8){
+                return randomNumber = Math.floor(Math.random() * 120)
+            }
+        }
+        
 const openConfigjs = document.getElementById('configModal')
 const closeButton = document.getElementById('close-button')
 const overlay = document.getElementById('overlay')
@@ -245,11 +239,9 @@ const prevz = document.getElementById('previous-operand')
 const currz = document.getElementById('current-operand')
 const quizButton = document.getElementById('QuizButton')
 const quizDisplay = document.getElementById('quizDisplay')
-const questionNumberButtons = document.querySelectorAll("#questionNumber.button")
-const questionNumberButton3 = document.getElementById('questionNumber3')
-const questionNumberButton6 = document.getElementById('questionNumber6')
-const questionNumberButtoninf = document.getElementById('questionNumberinf')
-const questionNumberarray = [questionNumberButtoninf, questionNumberButton6, questionNumberButton3]
+//const questionNumberButtons = document.querySelectorAll("#questionNumber.button")
+const questionNumberButtoninf = document.querySelector('#questionNumberinf')
+const questionNumberarray = [questionNumberButtoninf]
 const one = document.getElementById('1')
 const two = document.getElementById('2')
 const three = document.getElementById('3')
@@ -265,6 +257,9 @@ let easterEgg = 0
 let openOrNot = false
 let darkOrNot = false
 let NOQC = 0
+function fr(variable, DOMelement){
+    return variable.classList.remove(DOMelement)
+}
 
 openConfigjs.addEventListener('click', () => {
       openOrNot = true
@@ -303,43 +298,20 @@ function easter(){
 quizButton.addEventListener('click', () => {
     CONFIGURATION.quizButtonFunction()
 })
-questionNumberButtons.forEach(button => {
-    button.addEventListener('click', () => {
-     questionNumberButtons.classList.remove('active')
-    })
-})
+
  function questionNumberShowerFunc(){
-    questionNumberButton3.classList.add('active')
-    questionNumberButton6.classList.add('active')
     questionNumberButtoninf.classList.add('active')
  }
 
  function questionNumberHiderFunc(){
-    questionNumberButton3.classList.remove('active')
-    questionNumberButton6.classList.remove('active')
     questionNumberButtoninf.classList.remove('active')
     questionNumberCloseButton.classList.add('active')
     quizDisplay.classList.add('active')
  }
 
  questionNumberButtoninf.addEventListener('click', () => {
-    questionsLeft = 1
-    NOQC = 3
     CONFIGURATION.NOQCFunction()
     
- })
-
- questionNumberButton3.addEventListener('click', () => {
-    questionsLeft = 3
-    NOQC = 1
-    CONFIGURATION.NOQCFunction()
-    
- })
-
- questionNumberButton6.addEventListener('click', () => {
-    questionsLeft = 6
-    NOQC = 2
-    CONFIGURATION.NOQCFunction()
  })
  questionNumberCloseButton.addEventListener('click', () => {
     questionNumberCloseButton.classList.remove('active')
@@ -348,4 +320,3 @@ questionNumberButtons.forEach(button => {
     questionsLeft = 0
     NOQC = 0
  })
- 

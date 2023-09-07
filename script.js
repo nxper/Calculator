@@ -1,3 +1,4 @@
+
 class Calculator {
     constructor(previousOperandButtons, currentOperandButtons) {
         this.previousOperandButtons  = previousOperandButtons
@@ -32,7 +33,7 @@ class Calculator {
         this.currentOperand = ''
     }
     computeFunction(){
-        let result;
+        
         const prev = parseFloat(this.previousOperand)
         const current = parseFloat(this.currentOperand)
         if (isNaN(prev) || isNaN(current)) return
@@ -80,9 +81,10 @@ class Calculator {
         if (this.previousOperand != ''){
             this.previousOperandButtons.innerText = this.previousOperand
         }
+        
     }
 }
-
+let result;
 const numberButtons = document.querySelectorAll("[data-number]")
 const operationButtons = document.querySelectorAll("[data-operation]")
 const allClearButtons = document.querySelector("[data-all-clear]")
@@ -123,6 +125,7 @@ deleteButtons.addEventListener('click', button => {
 equalsButtons.addEventListener('click', button => {
     calculator.computeFunction()
     calculator.updateDisplay()
+    CorrectOrFalse()
   })
 
 specialOperations.addEventListener('click', button => {
@@ -169,7 +172,7 @@ class config {
     quizButtonFunction(){
         
         function questionNumber(){
-            document.getElementById('questionPrompt').innerText = 'How many questions would you like??'
+            document.getElementById('questionPrompt').innerText = 'Get ready.'
             document.getElementById('questionPrompt').classList.add('active')
         setTimeout(function (){
             document.getElementById('questionPrompt').classList.remove('active')
@@ -179,55 +182,51 @@ class config {
         }, 2500)
     }
     questionNumber()
-        var randomNumVar = randomNumFunc()
-         var quizButtonRNGVar = quizButtonRNG()
          //Hace que el display rojo del quiz tome el valor de randomNumber
          
      }
     NOQCFunction(){
         questionNumberHiderFunc()
         function randomNumberAnimation(){
-          
-            for(var animation = 200;animation == 0; animation-=1){
-                    randomNumFunc()
-                    quizButtonRNG()
-            }
+          let animation = 200;
+            var leemao = setInterval(()=>{
+                animation = animation - 1;
+                randomAnim()
+                quizButtonRNG()
+                if(animation === 0){
+                clearInterval(leemao)
+                }
+            }, 10)
+            
          }
          randomNumberAnimation()
         }
         
-    
-    CorrectOrFalse() {
-        if(result === quizDisplay.innerText){
-            document.getElementById('questionPrompt').classList.add('quizActive')
-            document.getElementById('questionPrompt').innerText = 'Correct!!'
-        }else if(result != quizDisplay.innerText){
-            document.getElementById('questionPrompt').classList.add('quizinActive')
-            document.getElementById('questionPrompt').innerText = 'incorrect :(((((('
+}
+ function CorrectOrFalse(){
+        if(parseFloat(currentOperandButtons.innerText) === parseFloat(quizDisplay.innerText)){
+            config.NOQCFunction()
+            alert('Correct!!')
+            
+        }else if(parseFloat(currentOperandButtons) != parseFloat(quizDisplay.innerText)){
+            alert('incorrect :((((((')
         }
     }
-}
+    function numberHider(){
+        
+    }
 let randomNumber = 0;
+function randomAnim(){
+    randomNumber = Math.floor(Math.random() * 108)
+    parseFloat(randomNumber)
+}
 function quizButtonRNG(){
             quizDisplay.innerText = randomNumber
-        }
+}
  const CONFIGURATION = new config()
 
-let questionPicker = Math.floor(Math.random * 10)
         
-        
-        function randomNumFunc(){
-            if (questionPicker < 2){
-               return randomNumber = Math.floor(Math.random() * 15)
-            }else if(questionPicker >= 2){
-               return randomNumber = Math.floor(Math.random() * 30)
-            }else if(questionPicker >= 5){
-              return  randomNumber = Math.floor(Math.random() * 60)
-            }else if(questionPicker >= 8){
-                return randomNumber = Math.floor(Math.random() * 120)
-            }
-        }
-        
+
 const openConfigjs = document.getElementById('configModal')
 const closeButton = document.getElementById('close-button')
 const overlay = document.getElementById('overlay')
@@ -241,7 +240,6 @@ const quizButton = document.getElementById('QuizButton')
 const quizDisplay = document.getElementById('quizDisplay')
 //const questionNumberButtons = document.querySelectorAll("#questionNumber.button")
 const questionNumberButtoninf = document.querySelector('#questionNumberinf')
-const questionNumberarray = [questionNumberButtoninf]
 const one = document.getElementById('1')
 const two = document.getElementById('2')
 const three = document.getElementById('3')
@@ -287,11 +285,11 @@ lightTheme.addEventListener('click', () => {
 
 function easter(){
     if (easterEgg === 4){
-        alert('Stop messing with config you moron')
+        currentOperandButtons.text = 'Stop messing with config you moron'
     } else if (easterEgg === 12){
-        alert('stop')
+        currentOperandButtons.text = 'stop'
     }else if (easterEgg === 28){
-        alert('kys')
+        currentOperandButtons.text ='kys'
     easterEgg = 0
     }
 }
@@ -311,7 +309,6 @@ quizButton.addEventListener('click', () => {
 
  questionNumberButtoninf.addEventListener('click', () => {
     CONFIGURATION.NOQCFunction()
-    
  })
  questionNumberCloseButton.addEventListener('click', () => {
     questionNumberCloseButton.classList.remove('active')

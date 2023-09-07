@@ -207,11 +207,15 @@
   border-style: groove;
   background-color: purple;
  }
- .quizDisplay{
+ #quizDisplay{
+  justify-content: center;
+  align-items: center;
+  position: relative;
   pointer-events: none;
   opacity: 0;
+  left: 300px;
+  max-width: fit-content;
   border: 1px solid black;
-  position: relative;
   justify-content: center;
   background-color: white;
   border-radius: 1px;
@@ -310,22 +314,28 @@
  #closebuttonQ{
   opacity: 0;
   pointer-events: none;
+  position: sticky;
   font-size: 20px;
   border: none;
   font-weight: 700;
   cursor: pointer;
   position: relative;
-  left: 700px;
+  left: 400px;
   top: 10px;
   color: #ff2600;
   background: none;
+  z-index: 12;
  }
-.quizDisplay
+
  #closebuttonQ.active{
   pointer-events: all;
   opacity: 1;
  }
 
+ #quizDisplay.active{
+  pointer-events: all;
+  opacity: 1;
+ }
  #quizDisplay.active{
   pointer-events: all;
   opacity: 1;
